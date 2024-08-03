@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio de Michael Fernando Herrera Rodríguez</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Michael Fernando Herrera Rodríguez</h1>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#sobre-mi">Sobre mí</a></li>
+                <li><a href="#educacion">Educación</a></li>
+                <li><a href="#habilidades">Habilidades</a></li>
+                <li><a href="#proyectos">Proyectos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="inicio">
+        <div class="intro">
+            <h2>Bienvenido a mi Portafolio</h2>
+            <p>Ingeniero Electrónico en formación con habilidades avanzadas en programación, redes y ciberseguridad.</p>
+        </div>
+    </section>
+
+    <section id="sobre-mi">
+        <h2>Sobre mí</h2>
+        <p>Soy Michael Fernando Herrera Rodríguez, un apasionado de la tecnología y la innovación. Actualmente estoy cursando un bootcamp en Blockchain y un curso de Ciberseguridad con Google.</p>
+    </section>
+
+    <section id="educacion">
+        <h2>Educación</h2>
+        <ul>
+            <li>Ingeniería Electrónica - Universidad Nacional Abierta y a Distancia (2024)</li>
+            <li>Especialización en Seguridad Informática - Universidad Nacional Abierta y a Distancia (2026)</li>
+            <li>Diplomado en Internet y Estrategias de Diseño de Páginas Web - Politécnico Intercontinental (2023)</li>
+            <li>Certificaciones de CISCO Networking Academy (2023)</li>
+            <li>Técnico en Asistencia Administrativa - SENA (2017)</li>
+        </ul>
+    </section>
+
+    <section id="habilidades">
+        <h2>Habilidades</h2>
+        <ul>
+            <li>Programación: Python, C++, MATLAB, Simulink, LabVIEW</li>
+            <li>Redes y Seguridad Informática: Certificaciones de Cisco en administración y seguridad de redes</li>
+            <li>Electrónica y Señales: Amplios conocimientos en electrónica, señales, sistemas y redes</li>
+            <li>Microcontroladores: Experiencia con ESP32 y otros dispositivos embebidos</li>
+            <li>Comunicación: Efectiva, con habilidades analíticas y capacidad para trabajar en equipo</li>
+            <li>Ciberseguridad: Formación en ciberseguridad con Google</li>
+            <li>Blockchain: Cursando bootcamp de nivel explorador</li>
+        </ul>
+    </section>
+
+    <section id="proyectos">
+        <h2>Proyectos</h2>
+        <ul>
+            <li>Proyecto de Grado en Ingeniería Electrónica: Universidad Nacional Abierta y a Distancia (En Proceso)</li>
+            <li>Proyectos en Packet Tracer y Redes: Simulación y configuración de redes en entornos académicos</li>
+        </ul>
+    </section>
+
+    <section id="contacto">
+        <h2>Contacto</h2>
+        <form id="contact-form">
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Correo Electrónico:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="message">Mensaje:</label>
+            <textarea id="message" name="message" required></textarea>
+            <button type="submit">Enviar</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Michael Fernando Herrera Rodríguez</p>
+    </footer>
+
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        (function() {
+            emailjs.init("YOUR_USER_ID"); // Replace with your EmailJS user ID
+        })();
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
+                .then(function() {
+                    alert('Mensaje enviado!');
+                }, function(error) {
+                    alert('Error al enviar el mensaje: ' + JSON.stringify(error));
+                });
+        });
+    </script>
+</body>
+</html>

@@ -1,24 +1,64 @@
-// Animación de bienvenida
-document.addEventListener('DOMContentLoaded', function() {
-    const introText = document.querySelector('.intro h2');
-    introText.style.opacity = 0;
-    introText.style.transition = 'opacity 2s';
-    setTimeout(() => {
-        introText.style.opacity = 1;
-    }, 500);
-});
+document.addEventListener("DOMContentLoaded", function() {
+    console.log("JavaScript cargado y ejecutándose correctamente.");
 
-// EmailJS integration
-(function() {
-    emailjs.init("YOUR_USER_ID"); // Replace with your EmailJS user ID
-})();
+    const form = document.getElementById('contact-form');
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        const formData = new FormData(form);
+        const name = formData.get('name');
+        const email = formData.get('email');
+        const message = formData.get('message');
 
-document.getElementById('contact-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
-        .then(function() {
-            alert('Mensaje enviado!');
-        }, function(error) {
-            alert('Error al enviar el mensaje: ' + JSON.stringify(error));
+        fetch('https://formspree.io/f/YOUR_FORM_ID', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        }).then(response => {
+            if (response.ok) {
+                document.getElementById('response-message').textContent = '¡Mensaje enviado con éxito!';
+                form.reset();
+            } else {
+                document.getElementById('response-message').textContent = 'Hubo un problema al enviar el mensaje. Inténtalo de nuevo.';
+            }
+        }).catch(error => {
+            document.getElementById('response-message').textContent = 'Hubo un problema al enviar el mensaje. Inténtalo de nuevo.';
         });
+    });
+
+    // Minijuego
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+    let x = canvas.width / 2;
+    let y = canvas.height - 30;
+    let dx = 2;
+    let dy = -2;
+    let ballRadius = 10;
+
+    function drawBall() {
+        ctx.beginPath();
+        ctx.arc(x, y, ballRadius, 0, Math.PI*2);
+        ctx.fillStyle = "#0095DD";
+        ctx.fill();
+        ctx.closePath();
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawBall();
+        
+        if(x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
+            dx = -dx;
+        }
+        if(y + dy > canvas.height - ballRadius || y + dy < ballRadius) {
+            dy = -dy;
+        }
+        
+        x += dx;
+        y += dy;
+    }
+
+    setInterval(draw, 10);
 });
